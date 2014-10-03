@@ -6,7 +6,8 @@
 #include "LoadingState.h"
 #include "MainMenuState.h"
 #include "GameplayState.h"
-//#include "PauseState.h"
+#include "CreditsState.h"
+#include "TeamCredits.h"
 
 // 
 enum StateType {
@@ -21,9 +22,11 @@ enum StateType {
 
 	GAMESTATE_MAINMENU,
 
-	//GAMESTATE_PAUSE,
+	GAMESTATE_GAMEPLAY,
 
-	GAMESTATE_GAMEPLAY
+	GAMESTATE_CREDITS,
+
+	GAMESTATE_TEAM
 };
 
 class GameStateManager {

@@ -5,17 +5,20 @@
 // amount of time has passed, as dictated by state_life_timer_, this state
 // will move on to the next state.
 void LoadingState::Init(WindowManager* w) {
-	cout << "|-->LoadingState::Init() Invoked" << endl;
+	cout << "|-->story1State::Init() Invoked" << endl;
 
-	ptr_background_texture_ = RenderingEngine::LoadTexture(w->getRenderer(), "_resources\\loadingScreen.png");
+	ptr_background_texture_ = RenderingEngine::LoadTexture(w->getRenderer(), "_resources\\storyScreen.png");
+	ptr_credits_texture_ = RenderingEngine::LoadTexture(w->getRenderer(), "_resources\\creditsTeamScreen.png");
+
 	state_life_timer_.Start();
 }
 
 // Cleans the object in preparation for safe destruction of object.
 void LoadingState::Clean() {
-	cout << "|-->LoadingState::Clean() Invoked" << endl;
+	cout << "|-->story1State::Clean() Invoked" << endl;
 
 	RenderingEngine::DestroyTexture(ptr_background_texture_);
+	RenderingEngine::DestroyTexture(ptr_credits_texture_);
 }
 
 // Handles events for the loading state
@@ -23,7 +26,15 @@ void LoadingState::HandleEvents(SDL_Event* event) {
 	switch (event->type) {
 		case SDL_MOUSEBUTTONDOWN:
 			if (event->button.button == SDL_BUTTON_LEFT || event->button.button == SDL_BUTTON_RIGHT) {
-				cout << " | Current State: LoadingState" << endl;
+				cout << " | Current State: story1State" << endl;
+				GameStateManager::setCurrentState(GAMESTATE_TEAM);
+			}
+			break;
+
+		case SDL_KEYDOWN:
+			// Change States when Escape is pressed
+			if (event->key.keysym.sym == SDLK_RETURN || event->key.keysym.sym == SDLK_KP_ENTER) {
+				GameStateManager::setCurrentState(GAMESTATE_TEAM);
 			}
 			break;
 	}
@@ -33,8 +44,23 @@ void LoadingState::HandleEvents(SDL_Event* event) {
 // passed since the timer object started. If it has then the current gamestate
 // is changed to GAMESTATE_MAINMENU.
 void LoadingState::Update(WindowManager* w) {
-	if ((state_life_timer_.getTicks() / 1000.f) >= 1) {
-		GameStateManager::setCurrentState(GAMESTATE_MAINMENU);
+	if ((state_life_timer_.getTicks() / 1000.f) >= 10) {
+		/*
+		// Creates a 2D rendering context for a window.
+		sdl_renderer *renderer;
+
+		ttf_font* font = ttf_openfont( "_resources\\showg.ttf", 36 );
+		sdl_color textcolor = { 0, 0, 0 }; // rgb value for black
+
+		story_text_.createtexturefromtext(renderer, "a game by", font, textcolor); 
+		*/
+		GameStateManager::setCurrentState(GAMESTATE_TEAM);
+
+		//RenderingEngine::DrawTexture(w->getRenderer(), ptr_credits_texture_, 0, 0);
+		/*
+		if ((state_life_timer_.getTicks() / 1000.f) >= 3) {
+			GameStateManager::setCurrentState(GAMESTATE_MAINMENU);
+		}*/
 	}
 }
 

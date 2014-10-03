@@ -3,6 +3,7 @@
 
 #include "GameState.h"
 #include "GameStateManager.h"
+#include "Texture.h"
 #include "Timer.h"
 
 // Second GameState of the application
@@ -15,6 +16,9 @@ class LoadingState : public GameState {
 private:
 	// Loading screen image
 	SDL_Texture * ptr_background_texture_;
+	SDL_Texture * ptr_credits_texture_;
+
+	Texture story_text_;
 
 	// Timer object used to track this faux loading state's lifetime.
 	Timer state_life_timer_;

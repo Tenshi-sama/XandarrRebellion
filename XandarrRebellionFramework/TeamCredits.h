@@ -1,31 +1,28 @@
-#ifndef SRC_MAIN_MENU_STATE_H
-#define SRC_MAIN_MENU_STATE_H
+#ifndef SRC_TEAMCREDITS_H
+#define SRC_TEAMCREDITS_H
 
 #include "GameState.h"
 #include "GameStateManager.h"
-#include "Button.h"
+#include "Timer.h"
 
 //Third GameState of the application
-class MainMenuState : public GameState {
+class TeamCredits : public GameState {
 	//======================//
 	//		Properties		//
 	//======================//
 private:
-	// Pointer to Button for New Game
-	Button* new_game_btn_;
+	// Loading screen image
+	SDL_Texture * ptr_background_texture_;
 
-	// Pointer to Button to Credtis
-	Button* credits_game_btn_;
-
-	// Pointer to Button to Quit
-	Button* quit_game_btn_;
+	// Timer object used to track this faux loading state's lifetime.
+	Timer state_life_timer_;
 
 	//======================//
 	//		Behaviours		//
 	//======================//
 public:
-	MainMenuState() {}
-	~MainMenuState() {}
+	TeamCredits() : ptr_background_texture_(nullptr) {}
+	~TeamCredits() {}
 
 	// Main menu state initialization method
 	virtual void Init(WindowManager* w);

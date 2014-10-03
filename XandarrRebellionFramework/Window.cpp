@@ -30,7 +30,7 @@ WindowManager::~WindowManager() {
 bool WindowManager::Init() {
 	// Creates an application window for SDL.
 	ptr_app_window_ = SDL_CreateWindow(
-			"Tic-Tac-Toe v5.0",		// Window Title (UTF-8 encoding)
+			"XANDARR REBELLION",		// Window Title (UTF-8 encoding)
 			25,		// Initial X position of window
 			40,		// Initial Y position of window
 			width_,		// Window's width, in pixels

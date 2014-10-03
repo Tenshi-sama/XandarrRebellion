@@ -61,13 +61,17 @@ void GameStateManager::setCurrentState(int gameStateID) {
 		case GAMESTATE_MAINMENU:
 			ptr_current_state_ = new MainMenuState();
 			break;
-			/*
-		case GAMESTATE_PAUSE:
-			ptr_current_state_ = new PauseState();
-			break;
-			*/
+
 		case GAMESTATE_GAMEPLAY:
 			ptr_current_state_ = new GameplayState();
+			break;
+
+		case GAMESTATE_CREDITS:
+			ptr_current_state_ = new CreditsState();
+			break;
+
+		case GAMESTATE_TEAM:
+			ptr_current_state_ = new TeamCredits();
 			break;
 	}
 }

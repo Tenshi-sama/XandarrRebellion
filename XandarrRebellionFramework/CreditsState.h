@@ -1,21 +1,21 @@
-#ifndef SRC_MAIN_MENU_STATE_H
-#define SRC_MAIN_MENU_STATE_H
+#ifndef SRC_CREDITS_STATE_H
+#define SRC_CREDITS_STATE_H
 
 #include "GameState.h"
 #include "GameStateManager.h"
 #include "Button.h"
 
 //Third GameState of the application
-class MainMenuState : public GameState {
+class CreditsState : public GameState {
 	//======================//
 	//		Properties		//
 	//======================//
 private:
-	// Pointer to Button for New Game
-	Button* new_game_btn_;
+	// Loading screen image
+	SDL_Texture * ptr_background_texture_;
 
-	// Pointer to Button to Credtis
-	Button* credits_game_btn_;
+	// Pointer to Button for Back to Main Menu
+	Button* main_menu_btn_;
 
 	// Pointer to Button to Quit
 	Button* quit_game_btn_;
@@ -24,8 +24,8 @@ private:
 	//		Behaviours		//
 	//======================//
 public:
-	MainMenuState() {}
-	~MainMenuState() {}
+	CreditsState() : ptr_background_texture_(nullptr), main_menu_btn_(nullptr), quit_game_btn_(nullptr) {}
+	~CreditsState() {}
 
 	// Main menu state initialization method
 	virtual void Init(WindowManager* w);
