@@ -20,22 +20,22 @@ void Player::HandleEvents(SDL_Event* event)
 			{
 				// move functionality for up
 				//position_y--;
-				sprite_.y(sprite_.y() - 4);
+				sprite_.y(sprite_.y() - 10);
 			}
 			if (event->key.keysym.sym == SDLK_s) 
 			{
 				// move functionality for down
-				sprite_.y(sprite_.y() + 4);
+				sprite_.y(sprite_.y() + 10);
 			}
 			if (event->key.keysym.sym == SDLK_a) 
 			{
 				// move functionality for left strafe
-				sprite_.x(sprite_.x() - 4);
+				sprite_.x(sprite_.x() - 10);
 			}
 			if (event->key.keysym.sym == SDLK_d) 
 			{
 				// move functionality for right strafe
-				sprite_.x(sprite_.x() + 4);
+				sprite_.x(sprite_.x() + 10);
 			}
 			break;
 	}

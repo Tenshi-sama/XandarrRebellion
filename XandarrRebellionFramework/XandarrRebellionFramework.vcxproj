@@ -10,6 +10,44 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CreditsState.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="GameplayState.cpp" />
+    <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="LoadingState.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RenderingEngine.cpp" />
+    <ClCompile Include="RenderTarget.cpp" />
+    <ClCompile Include="SplashState.cpp" />
+    <ClCompile Include="TeamCredits.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="CreditsState.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="GameplayState.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="LoadingState.h" />
+    <ClInclude Include="MainMenuState.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="RenderingEngine.h" />
+    <ClInclude Include="RenderTarget.h" />
+    <ClInclude Include="SplashState.h" />
+    <ClInclude Include="TeamCredits.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Window.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{89DDA274-7876-43CA-9D3C-E5207D64260C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -77,42 +115,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Button.cpp" />
-    <ClCompile Include="CreditsState.cpp" />
-    <ClCompile Include="GameEngine.cpp" />
-    <ClCompile Include="GameplayState.cpp" />
-    <ClCompile Include="GameStateManager.cpp" />
-    <ClCompile Include="LoadingState.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MainMenuState.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="RenderingEngine.cpp" />
-    <ClCompile Include="RenderTarget.cpp" />
-    <ClCompile Include="SplashState.cpp" />
-    <ClCompile Include="TeamCredits.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="Window.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Button.h" />
-    <ClInclude Include="CreditsState.h" />
-    <ClInclude Include="GameEngine.h" />
-    <ClInclude Include="GameplayState.h" />
-    <ClInclude Include="GameState.h" />
-    <ClInclude Include="GameStateManager.h" />
-    <ClInclude Include="LoadingState.h" />
-    <ClInclude Include="MainMenuState.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="RenderingEngine.h" />
-    <ClInclude Include="RenderTarget.h" />
-    <ClInclude Include="SplashState.h" />
-    <ClInclude Include="TeamCredits.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="Timer.h" />
-    <ClInclude Include="Window.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -2,17 +2,19 @@
 
 // Creates a new instance of Board and OutputPanel and loads the requisite
 // resources for the Gameplay State.
-void GameplayState::Init(WindowManager* w) {
+void GameplayState::Init(WindowManager* w) 
+{
 	
 	cout << "|-->GameplayState::Init() Invoked" << endl;
 
 	ptr_background_texture_ = RenderingEngine::LoadTexture(w->getRenderer(), "_resources\\map.png");
 	
 	player_.Init(w->getRenderer());
-	
+	enemy_.Init(w->getRenderer());
 }
 
-void GameplayState::Clean() {
+void GameplayState::Clean() 
+{
 	cout << "|-->GameplayState::Clean() Invoked" << endl;
 
 	RenderingEngine::DestroyTexture(ptr_background_texture_);
@@ -21,9 +23,11 @@ void GameplayState::Clean() {
 }
 
 // Handles all gameplay events
-void GameplayState::HandleEvents(SDL_Event* event) {
+void GameplayState::HandleEvents(SDL_Event* event) 
+{
 	
 	player_.HandleEvents(event); //Player events
+	//enemy_.HandleEvents(event);
 
 	switch (event->type) 
 	{
@@ -38,10 +42,14 @@ void GameplayState::HandleEvents(SDL_Event* event) {
 }
 
 // From turn five onwards, checks if there has been a winner.
-void GameplayState::Update(WindowManager* w) {
+void GameplayState::Update(WindowManager* w) 
+{
+	//player_.Update(w);
+	enemy_.Update(w);
 }
 
-void GameplayState::Render(WindowManager* w) {
+void GameplayState::Render(WindowManager* w) 
+{
 	
 	//NOTE:
 	// The order in which call draw is the order the objects are rendered.
@@ -54,10 +62,12 @@ void GameplayState::Render(WindowManager* w) {
 
 	// Player
 	player_.Render(w);
+	enemy_.Render(w);
 }
 
 //
-void GameplayState::Reset(WindowManager* w) {
+void GameplayState::Reset(WindowManager* w) 
+{
 	cout << "|-->GameplayState::Reset() Invoked" << endl;
 
 	// Removed TIC_TAC_TOE Code

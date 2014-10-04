@@ -5,10 +5,7 @@
 //#include "GameStateManager.h"
 #include "Button.h"
 #include "Player.h"
-
-
-
-
+#include "Enemy.h"
 
 
 // Fourth and final GameState of the applicatoin
@@ -18,6 +15,7 @@ private:
 	//		Properties		//
 	//======================//
 	Player player_;
+	Enemy enemy_;
 
 	// TODO:
 	// REPLACE THIS PROPETY WITH A TEXTURE OBJECT
