@@ -1,5 +1,9 @@
 #include "Player.h"
 
+#define SCREEN_WIDTH 600
+#define SCREEN_HEIGHT 800
+#define SPRITE_WIDTH 200
+#define SPRITE_HEIGHT 200
 
 void Player::Init(SDL_Renderer* r)
 {
@@ -20,22 +24,30 @@ void Player::HandleEvents(SDL_Event* event)
 			{
 				// move functionality for up
 				//position_y--;
-				sprite_.y(sprite_.y() - 10);
+				if (sprite_.y() >= SCREEN_HEIGHT - SCREEN_HEIGHT) {
+					sprite_.y(sprite_.y() - vel);
+				}
 			}
 			if (event->key.keysym.sym == SDLK_s) 
 			{
 				// move functionality for down
-				sprite_.y(sprite_.y() + 10);
+				if (sprite_.y() <= SCREEN_HEIGHT - SPRITE_HEIGHT) {
+					sprite_.y(sprite_.y() + vel);
+				}
 			}
 			if (event->key.keysym.sym == SDLK_a) 
 			{
 				// move functionality for left strafe
-				sprite_.x(sprite_.x() - 10);
+				if (sprite_.x() >= SCREEN_WIDTH - SCREEN_WIDTH) {
+					sprite_.x(sprite_.x() - vel);
+				}
 			}
 			if (event->key.keysym.sym == SDLK_d) 
 			{
 				// move functionality for right strafe
-				sprite_.x(sprite_.x() + 10);
+				if (sprite_.x() <= SCREEN_WIDTH - SPRITE_WIDTH) {
+					sprite_.x(sprite_.x() + vel);
+				}
 			}
 			break;
 	}

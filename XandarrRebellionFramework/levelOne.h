@@ -1,25 +1,23 @@
-#ifndef SRC_PLAYER_H
-#define SRC_PLAYER_H
+#ifndef SRC_LEVELONE_H
+#define SRC_LEVELONE_H
 
 #include "Texture.h"
 #include "Window.h"
 
 
-class Player 
+class LevelOne 
 {
 private:
 	//======================//
 	//		Properties		//
 	//======================//
 	const string SPRITE_LOCATION;
-	Texture sprite_;
-
-	int vel;
+	Texture tile_;
 
 public:
 	// Ctor and Dtor
-	Player() : SPRITE_LOCATION("_resources\\player.png"), vel(10) {};
-	~Player(){};
+	LevelOne() : SPRITE_LOCATION("_resources\\TileDevTest.png") {};
+	~LevelOne(){};
 
 	//======================//
 	//		Behaviours		//

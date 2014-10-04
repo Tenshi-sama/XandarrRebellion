@@ -7,8 +7,9 @@ void GameplayState::Init(WindowManager* w)
 	
 	cout << "|-->GameplayState::Init() Invoked" << endl;
 
-	ptr_background_texture_ = RenderingEngine::LoadTexture(w->getRenderer(), "_resources\\map.png");
+	//ptr_background_texture_ = RenderingEngine::LoadTexture(w->getRenderer(), "_resources\\map.png");
 	
+	levelOne_.Init(w->getRenderer());
 	player_.Init(w->getRenderer());
 	enemy_.Init(w->getRenderer());
 }
@@ -17,8 +18,7 @@ void GameplayState::Clean()
 {
 	cout << "|-->GameplayState::Clean() Invoked" << endl;
 
-	RenderingEngine::DestroyTexture(ptr_background_texture_);
-	is_winner_ = false;
+	//RenderingEngine::DestroyTexture(ptr_background_texture_);
 
 }
 
@@ -58,7 +58,9 @@ void GameplayState::Render(WindowManager* w)
 	// draw order!
 
 	// Draw the ptr_background_texture_image to the Scene2D object within RenderingEngine
-	RenderingEngine::DrawTexture(w->getRenderer(), ptr_background_texture_, 0, 0);
+	//RenderingEngine::DrawTexture(w->getRenderer(), ptr_background_texture_, 0, 0);
+
+	levelOne_.Render(w);
 
 	// Player
 	player_.Render(w);
