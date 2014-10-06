@@ -14,11 +14,9 @@ private:
 	const string SPRITE_LOCATION;
 	Texture sprite_;
 
-	int vel;
-
 public:
 	// Ctor and Dtor
-	Player() : SPRITE_LOCATION("_resources\\player.png"), vel(10) {};
+	Player() : SPRITE_LOCATION("_resources\\player.png") {};
 	~Player(){};
 
 	//======================//

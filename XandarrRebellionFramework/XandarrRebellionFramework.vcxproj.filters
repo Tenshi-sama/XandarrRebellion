@@ -66,10 +66,7 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="chooseRace.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="levelOne.cpp">
+    <ClCompile Include="Katana.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -125,10 +122,10 @@
     <ClInclude Include="Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="chooseRace.h">
+    <ClInclude Include="Melee.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="levelOne.h">
+    <ClInclude Include="Katana.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

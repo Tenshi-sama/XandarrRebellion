@@ -8,7 +8,6 @@
 #include "GameplayState.h"
 #include "CreditsState.h"
 #include "TeamCredits.h"
-#include "chooseRace.h"
 
 // 
 enum StateType {
@@ -27,9 +26,7 @@ enum StateType {
 
 	GAMESTATE_CREDITS,
 
-	GAMESTATE_TEAM,
-
-	GAMESTATE_CHOOSERACE
+	GAMESTATE_TEAM
 };
 
 class GameStateManager {

@@ -10,8 +10,6 @@ void Enemy::Init(SDL_Renderer* r)
 	sprite_.LoadTexture(r, SPRITE_LOCATION);
 	sprite_.x(400);
 	sprite_.y(600);
-
-
 }
 
 // Handles all gameplay events

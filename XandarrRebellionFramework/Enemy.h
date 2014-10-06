@@ -15,6 +15,7 @@ private:
 	Texture sprite_;
 	int width; 
 	int height;
+
 public:
 	// Ctor and Dtor
 	Enemy() : SPRITE_LOCATION("_resources\\enemy.png") {};

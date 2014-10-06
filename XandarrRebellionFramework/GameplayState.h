@@ -4,9 +4,10 @@
 #include "GameState.h"
 //#include "GameStateManager.h"
 #include "Button.h"
-#include "levelOne.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Katana.h"
+
 
 
 // Fourth and final GameState of the applicatoin
@@ -15,16 +16,17 @@ private:
 	//======================//
 	//		Properties		//
 	//======================//
-	LevelOne levelOne_;
 	Player player_;
 	Enemy enemy_;
+	//Katana katana_;
+	
 
 	// TODO:
 	// REPLACE THIS PROPETY WITH A TEXTURE OBJECT
-	//SDL_Texture * ptr_background_texture_;
+	SDL_Texture * ptr_background_texture_;
 
 	// Tracks if a player has met a victory condition.
-	//bool is_winner_;
+	bool is_winner_;
 
 	//======================//
 	//		Behaviours		//
@@ -34,7 +36,7 @@ private:
 
 public:
 
-	GameplayState() {}
+	GameplayState() : ptr_background_texture_(nullptr), is_winner_(false) {}
 
 	// Gameplay state initialization method
 	virtual void Init(WindowManager* w);

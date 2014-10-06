@@ -73,9 +73,5 @@ void GameStateManager::setCurrentState(int gameStateID) {
 		case GAMESTATE_TEAM:
 			ptr_current_state_ = new TeamCredits();
 			break;
-			
-		case GAMESTATE_CHOOSERACE:
-			ptr_current_state_ = new chooseRace();
-			break;
 	}
 }

@@ -64,7 +64,7 @@ void MainMenuState::HandleEvents(SDL_Event* event) {
 // If so the current game state is changed.
 void MainMenuState::Update(WindowManager* w) {
 	if (new_game_btn_->getState() == CLICKED) {
-		GameStateManager::setCurrentState(GAMESTATE_CHOOSERACE);
+		GameStateManager::setCurrentState(GAMESTATE_GAMEPLAY);
 		return;
 	}
 
