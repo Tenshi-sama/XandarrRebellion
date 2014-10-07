@@ -6,6 +6,7 @@
 #include "Button.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "HUD.h"
 #include "Katana.h"
 
 
@@ -18,6 +19,8 @@ private:
 	//======================//
 	Player player_;
 	Enemy enemy_;
+	Healthbarout Healthbarout_;
+	Healthbarin Healthbarin_;
 	//Katana katana_;
 	
 

@@ -17,6 +17,7 @@
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameplayState.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Katana.cpp" />
     <ClCompile Include="LoadingState.cpp" />
     <ClCompile Include="main.cpp" />
@@ -38,6 +39,7 @@
     <ClInclude Include="GameplayState.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="HUD.h" />
     <ClInclude Include="Katana.h" />
     <ClInclude Include="LoadingState.h" />
     <ClInclude Include="MainMenuState.h" />
