@@ -12,7 +12,8 @@ void GameplayState::Init(WindowManager* w)
 	player_.Init(w->getRenderer());
 	enemy_.Init(w->getRenderer());
 	Healthbarin_.Init(w->getRenderer());
-	Healthbarout_.Init(w->getRenderer());
+	Barout_.Init(w->getRenderer());
+	Item_Box_.Init(w->getRenderer());
 
 }
 
@@ -67,7 +68,8 @@ void GameplayState::Render(WindowManager* w)
 	player_.Render(w);
 	enemy_.Render(w);
 	Healthbarin_.Render(w);
-	Healthbarout_.Render(w);
+	Barout_.Render(w);
+	Item_Box_.Render(w);
 }
 
 //

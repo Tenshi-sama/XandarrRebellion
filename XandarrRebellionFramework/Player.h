@@ -16,7 +16,7 @@ private:
 
 public:
 	// Ctor and Dtor
-	Player() : SPRITE_LOCATION("_resources\\player.png") {};
+	Player() : SPRITE_LOCATION("_resources\\_Player\\PlayerE.png") {};
 	~Player(){};
 
 	//======================//
@@ -27,5 +27,7 @@ public:
 	void Update(WindowManager* w);
 	void Render(WindowManager* w);
 };
+
+
 
 #endif

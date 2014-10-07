@@ -2,11 +2,11 @@
 
 
 void Player::Init(SDL_Renderer* r)
-{
+{	
 	sprite_.name("Player");
 	sprite_.LoadTexture(r, SPRITE_LOCATION);
-	sprite_.x(0);
-	sprite_.y(0);
+	sprite_.x(350);
+	sprite_.y(350);
 }
 
 // Handles all gameplay events

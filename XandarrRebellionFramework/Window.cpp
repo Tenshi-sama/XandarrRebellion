@@ -9,7 +9,7 @@ WindowManager::WindowManager() {
 	is_mouse_focused_ = false;
 	is_keyboard_focused_ = false;
 	is_fullscreen_ = false;
-	width_ = 600;
+	width_ = 800;
 	height_ = 800;
 }
 

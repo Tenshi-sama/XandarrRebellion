@@ -19,8 +19,9 @@ private:
 	//======================//
 	Player player_;
 	Enemy enemy_;
-	Healthbarout Healthbarout_;
+	Barout Barout_;
 	Healthbarin Healthbarin_;
+	Item_Box Item_Box_;
 	//Katana katana_;
 	
 
