@@ -8,7 +8,7 @@
 #include "Enemy.h"
 #include "HUD.h"
 #include "Katana.h"
-
+#include "Melee.h"
 
 
 // Fourth and final GameState of the applicatoin
@@ -19,9 +19,10 @@ private:
 	//======================//
 	Player player_;
 	Enemy enemy_;
+	Katana katana_;
+
 	Healthbarout Healthbarout_;
 	Healthbarin Healthbarin_;
-	//Katana katana_;
 	
 
 	// TODO:

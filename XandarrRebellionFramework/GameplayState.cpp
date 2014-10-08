@@ -5,14 +5,18 @@
 void GameplayState::Init(WindowManager* w) 
 {
 	
+	SDL_Renderer* wRend = w->getRenderer(); 
 	cout << "|-->GameplayState::Init() Invoked" << endl;
 
-	ptr_background_texture_ = RenderingEngine::LoadTexture(w->getRenderer(), "_resources\\map.png");
+	ptr_background_texture_ = RenderingEngine::LoadTexture(wRend, "_resources\\map.png");
 	
-	player_.Init(w->getRenderer());
-	enemy_.Init(w->getRenderer());
-	Healthbarin_.Init(w->getRenderer());
-	Healthbarout_.Init(w->getRenderer());
+	player_.Init(wRend);
+	enemy_.Init(wRend);
+	Healthbarin_.Init(wRend);
+	Healthbarout_.Init(wRend);
+	katana_.Init(wRend);
+	katana_.getWorth();
+	katana_.getAttackRate();
 
 }
 
@@ -47,8 +51,9 @@ void GameplayState::HandleEvents(SDL_Event* event)
 // From turn five onwards, checks if there has been a winner.
 void GameplayState::Update(WindowManager* w) 
 {
-	//player_.Update(w);
+	player_.Update(w);
 	enemy_.Update(w);
+	katana_.Update(w);
 }
 
 void GameplayState::Render(WindowManager* w) 
@@ -67,13 +72,14 @@ void GameplayState::Render(WindowManager* w)
 	player_.Render(w);
 	enemy_.Render(w);
 	Healthbarin_.Render(w);
+	
+	katana_.Render(w);
 	Healthbarout_.Render(w);
+	
 }
 
 //
 void GameplayState::Reset(WindowManager* w) 
 {
 	cout << "|-->GameplayState::Reset() Invoked" << endl;
-
-	// Removed TIC_TAC_TOE Code
 }
