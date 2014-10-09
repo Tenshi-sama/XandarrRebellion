@@ -58,6 +58,8 @@ public:
 
 	// Gameplay state render method
 	virtual void Render(WindowManager* w);
+
+	bool collide(Player* a, Enemy* b);
 };
  
 #endif

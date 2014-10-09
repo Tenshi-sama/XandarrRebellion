@@ -11,7 +11,7 @@ private:
 	//======================//
 	//		Properties		//
 	//======================//
-	const string SPRITE_LOCATION = "_resources\\enemy.png";
+	const string SPRITE_LOCATION;
 	Texture sprite_;
 	int width; 
 	int height;
@@ -38,6 +38,18 @@ public:
 	void Render(WindowManager* w);
 	void MoveLeft(Texture *theSprite);
 	void MoveRight(Texture *theSprite);
+
+	bool Moving(bool);
+
+	inline int getXPos() { return sprite_.x(); }
+	inline int getYPos() { return sprite_.y(); }
+	inline int getWidth() { return sprite_.width(); }
+	inline int getHeight() { return sprite_.height(); }
+
+	inline void setXPos() { sprite_.x(); }
+	inline void setYPos() { sprite_.y(); }
+	inline void setWidth() { sprite_.width(); }
+	inline void setHeight() { sprite_.height(); }
 };
 
 #endif

@@ -14,11 +14,11 @@ private:
 	//======================//
 	//		Properties		//
 	//======================//
-	const string LEVEL_LOCATION = "_resources\\Winhill_6.png";
+	const string LEVEL_LOCATION;
 	Texture level_;
 
 public:
-	Level();
+	Level() : LEVEL_LOCATION("_resources\\Winhill_6.png") {}
 	~Level(){};
 
 	void Init(SDL_Renderer* r);

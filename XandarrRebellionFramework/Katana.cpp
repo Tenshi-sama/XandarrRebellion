@@ -10,6 +10,7 @@ Katana::Katana()
 	setIsOneHanded(false);
 	setWeight(10);
 	setWorth(250);
+	SPRITE_LOCATION : "_resources\\katana2.png";
 }
 
 void Katana::Init(SDL_Renderer* r)

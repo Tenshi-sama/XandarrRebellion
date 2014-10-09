@@ -13,8 +13,18 @@ private:
 	//======================//
 	//		Properties		//
 	//======================//
-	const string SPRITE_LOCATION = "_resources\\PlayerForward.png";
+	const string SPRITE_LOCATION;
 	Texture sprite_;
+
+	static const int VEL = 5;
+
+	int velX;
+	int velY;
+
+	bool MoveRight;
+	bool MoveLeft;
+	bool MoveUp;
+	bool MoveDown;
 
 	unsigned short base_health_;
 	unsigned short base_attack_;
@@ -51,6 +61,17 @@ public:
 	inline void setSpriteLocation(const string newValue) { SPRITE_LOCATION == newValue; }
 
 
+	inline int getXPos() { return sprite_.x(); }
+	inline int getYPos() { return sprite_.y(); }
+	inline int getWidth() { return sprite_.width(); }
+	inline int getHeight() { return sprite_.height(); }
+
+	inline void setXPos() { sprite_.x(); }
+	inline void setYPos() { sprite_.y(); }
+	inline void setWidth() { sprite_.width(); }
+	inline void setHeight() { sprite_.height(); }
+
+
 	//======================//
 	//		Behaviours		//
 	//======================//
@@ -58,10 +79,6 @@ public:
 	void HandleEvents(SDL_Event* event);
 	void Update(WindowManager* w);
 	void Render(WindowManager* w);
-	void MoveLeft(Texture *theSprite);
-	void MoveRight(Texture *theSprite);
-	void MoveUp(Texture *theSprite);
-	void MoveDown(Texture *theSprite);
 };
 
 #endif

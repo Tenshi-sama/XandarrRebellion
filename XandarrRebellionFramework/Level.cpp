@@ -1,10 +1,5 @@
 #include "Level.h"
 
-Level::Level()
-{
-
-}
-
 void Level::Init(SDL_Renderer* r)
 {
 	level_.LoadTexture(r, LEVEL_LOCATION);

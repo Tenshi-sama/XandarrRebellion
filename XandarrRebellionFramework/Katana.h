@@ -7,7 +7,7 @@
 class Katana : public Melee
 {
 private:
-	const string SPRITE_LOCATION = "_resources\\katana2.png";
+	const string SPRITE_LOCATION;
 	Texture katana_sprite_;
 
 public:

@@ -54,6 +54,12 @@ void GameplayState::Update(WindowManager* w)
 	player_.Update(w);
 	enemy_.Update(w);
 	katana_.Update(w);
+
+	if (collide(&player_, &enemy_)) {
+		enemy_.Moving(false);
+	} else {
+		enemy_.Moving(true);
+	}
 }
 
 void GameplayState::Render(WindowManager* w) 
@@ -83,4 +89,45 @@ void GameplayState::Render(WindowManager* w)
 void GameplayState::Reset(WindowManager* w) 
 {
 	cout << "|-->GameplayState::Reset() Invoked" << endl;
+}
+
+bool GameplayState::collide(Player* a, Enemy* b) {
+	//The sides of the rectangles
+    int leftA, leftB;
+    int rightA, rightB;
+    int topA, topB;
+    int bottomA, bottomB;
+
+    //Calculate the sides of rect A
+    leftA = a->getXPos();
+    rightA = a->getXPos() + a->getWidth();
+    topA = a->getYPos();
+    bottomA = a->getYPos() + a->getHeight();
+
+    //Calculate the sides of rect B
+    leftB = b->getXPos();
+    rightB = b->getXPos() + b->getWidth();
+    topB = b->getYPos();
+    bottomB = b->getYPos() + b->getHeight();//If any of the sides from A are outside of B
+
+    if( bottomA <= topB )
+    {
+        return false;
+    }
+
+    if( topA >= bottomB )
+    {
+        return false;
+    }
+
+    if( rightA <= leftB )
+    {
+        return false;
+    }
+
+    if( leftA >= rightB )
+    {
+        return false;
+    }
+	return true;
 }
