@@ -31,7 +31,7 @@ void Katana::Update(WindowManager* w)
 void Katana::Render(WindowManager* w)
 {
 	// Draw the ptr_background_texture_image to the Scene2D object within RenderingEngine
-	katana_sprite_.Draw(w->getRenderer());
+	//katana_sprite_.Draw(w->getRenderer());
 }
 
 void Katana::printInfo() {
