@@ -15,9 +15,6 @@ void GameplayState::Init(WindowManager* w)
 	Healthbarin_.Init(wRend);
 	Healthbarout_.Init(wRend);
 	katana_.Init(wRend);
-	katana_.getWorth();
-	katana_.getAttackRate();
-
 }
 
 void GameplayState::Clean() 

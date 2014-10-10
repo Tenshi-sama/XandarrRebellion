@@ -4,11 +4,11 @@
 #define ENEMY_HEIGHT 100
 #define SCREEN_WIDTH 600
 #define SCREEN_HEIGHT 800
-#define SPRITE_WIDTH 200
-#define SPRITE_HEIGHT 200
+#define SPRITE_WIDTH 100
+#define SPRITE_HEIGHT 100
 #define STEP 10
 
-Player::Player() : SPRITE_LOCATION("_resources\\Player2.png"), velX(10), velY(10), MoveRight(false), MoveLeft(false), MoveUp(false), MoveDown(false)
+Player::Player() : SPRITE_LOCATION("_resources\\PlayerForward.png"), velX(10), velY(10), MoveRight(false), MoveLeft(false), MoveUp(false), MoveDown(false)
 {
 	setBaseHealth(200);
 	setBaseAttack(10);
@@ -29,54 +29,6 @@ void Player::Init(SDL_Renderer* r)
 // Handles all gameplay events
 void Player::HandleEvents(SDL_Event* event) 
 {
-	static bool movingLeft = true;
-	static bool movingUp = true;
-
-	//cout << "Update! ... MovingLeft is: " << movingLeft << endl;
-	/*if (movingLeft)
-	{
-		if (sprite_.x() >= SCREEN_WIDTH - SCREEN_WIDTH)
-		{
-			MoveLeft(&sprite_);
-		}
-		else
-		{
-			movingLeft = false;
-		}
-	}
-	else
-	{
-		if (sprite_.x() <= SCREEN_WIDTH - ENEMY_WIDTH)
-		{
-			MoveRight(&sprite_);
-		}
-		else
-		{
-			movingLeft = true;
-		}
-	}
-	if (movingUp)
-	{
-		if (sprite_.x() >= SCREEN_HEIGHT - SCREEN_HEIGHT)
-		{
-			MoveUp(&sprite_);
-		}
-		else
-		{
-			movingUp = false;
-		}
-	}
-	else
-	{
-		if (sprite_.x() <= SCREEN_HEIGHT - ENEMY_HEIGHT)
-		{
-			MoveDown(&sprite_);
-		}
-		else
-		{
-			movingUp = true;
-		}
-	}*/
 	switch (event->type) 
 	{
 		case SDL_KEYDOWN:
@@ -146,25 +98,25 @@ void Player::HandleEvents(SDL_Event* event)
 	if (MoveRight) {
 		if (sprite_.x() <= SCREEN_WIDTH - SPRITE_WIDTH) {
 			sprite_.x(sprite_.x() + velX);
-			setSpriteLocation("_resources\\PlayerRight");
+			//setSpriteLocation("_resources\\PlayerRight");
 		}
 	} 
 	if (MoveLeft) {
 		if (sprite_.x() >= SCREEN_WIDTH - SCREEN_WIDTH) {
 			sprite_.x(sprite_.x() - velX);
-			setSpriteLocation("_resources\\PlayerLeft");
+			//setSpriteLocation("_resources\\PlayerLeft");
 		}
 	}
 	if (MoveDown) {
 		if (sprite_.y() <= SCREEN_HEIGHT - SPRITE_HEIGHT) {
 			sprite_.y(sprite_.y() + velY);
-			setSpriteLocation("_resources\\PlayerDown");
+			//setSpriteLocation("_resources\\PlayerDown");
 		}
 	}
 	if (MoveUp) {
 		if (sprite_.y() >= SCREEN_HEIGHT - SCREEN_HEIGHT) {
 			sprite_.y(sprite_.y() - velY);
-			setSpriteLocation("_resources\\PlayerForward");
+			//setSpriteLocation("_resources\\PlayerForward");
 		}
 	}
 }

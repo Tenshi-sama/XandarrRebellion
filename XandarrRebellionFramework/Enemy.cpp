@@ -70,5 +70,5 @@ void Enemy::Render(WindowManager* w)
 {
 
 	// Draw the ptr_background_texture_image to the Scene2D object within RenderingEngine
-	sprite_.Draw(w->getRenderer());
+	//sprite_.Draw(w->getRenderer());
 }
