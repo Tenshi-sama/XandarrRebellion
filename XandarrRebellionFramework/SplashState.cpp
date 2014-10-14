@@ -4,7 +4,7 @@
 void SplashState::Init(WindowManager* w) {
 	cout << "|-->SplashState::Init() Invoked" << endl;
 
-	ptr_splash_screen_ = RenderingEngine::LoadTexture(w->getRenderer(), "_resources\\TitlePage.png");
+	//ptr_splash_screen_ = RenderingEngine::LoadTexture(w->getRenderer(), "_resources\\TitlePage.png");
 }
 
 // Cleans the object in preparation for safe destruction of the object.
@@ -43,6 +43,7 @@ void SplashState::Update(WindowManager* w)
 // drawn within this method is drawn to the RenderingEngine's scene_property.
 void SplashState::Render(WindowManager* w) 
 {
+	ptr_splash_screen_ = RenderingEngine::LoadTexture(w->getRenderer(), "_resources\\TitlePage.png");
 	// Background Fill
 
 	// Set the Renderer Colour to desired value for drawing the background.

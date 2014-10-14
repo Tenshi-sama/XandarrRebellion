@@ -124,7 +124,7 @@ void Player::HandleEvents(SDL_Event* event)
 // From turn five onwards, checks if there has been a winner.
 void Player::Update(WindowManager* w) 
 {
-	SPRITE_LOCATION;
+
 }
 
 void Player::Render(WindowManager* w) 

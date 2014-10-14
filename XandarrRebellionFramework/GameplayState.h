@@ -2,6 +2,9 @@
 #define SRC_GAMEPLAYSTATE_H
 
 #include "GameState.h"
+#include <SDL_mixer.h>
+#include <stdio.h>
+#include <string>
 //#include "GameStateManager.h"
 #include "Button.h"
 #include "Player.h"
@@ -26,6 +29,13 @@ private:
 	Healthbarout Healthbarout_;
 	Healthbarin Healthbarin_;
 	
+	//The music that will be played
+	Mix_Music *gMusic = NULL;
+	//The sound effects that will be used 
+	Mix_Chunk *gScratch = NULL;
+	Mix_Chunk *gHigh = NULL;
+	Mix_Chunk *gMedium = NULL;
+	Mix_Chunk *gLow = NULL;
 
 	// TODO:
 	// REPLACE THIS PROPETY WITH A TEXTURE OBJECT
@@ -33,7 +43,7 @@ private:
 
 	// Tracks if a player has met a victory condition.
 	bool is_winner_;
-
+	bool success_;
 	//======================//
 	//		Behaviours		//
 	//======================//
@@ -42,7 +52,7 @@ private:
 
 public:
 
-	//GameplayState() : ptr_background_texture_(nullptr), is_winner_(false) {}
+	GameplayState() : is_winner_(false) {};
 
 	// Gameplay state initialization method
 	virtual void Init(WindowManager* w);
