@@ -19,17 +19,19 @@
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Inventory.cpp" />
-    <ClCompile Include="Katana.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LoadingState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RenderingEngine.cpp" />
     <ClCompile Include="RenderTarget.cpp" />
     <ClCompile Include="SplashState.cpp" />
     <ClCompile Include="TeamCredits.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextWindow.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
@@ -41,20 +43,21 @@
     <ClInclude Include="GameplayState.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="HitBox.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
-    <ClInclude Include="Katana.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LoadingState.h" />
     <ClInclude Include="MainMenuState.h" />
-    <ClInclude Include="Melee.h" />
+    <ClInclude Include="NPC.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RenderingEngine.h" />
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="SplashState.h" />
     <ClInclude Include="TeamCredits.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextWindow.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -68,7 +71,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v100</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -88,8 +91,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\GameDev\SDL2-2.0.3\include;C:\GameDev\SDL2_ttf-2.0.12\include;C:\GameDev\SDL2_image-2.0.0\include;C:\GameDev\SDL2_mixer-2.0.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\GameDev\SDL2-2.0.3\lib\x86;C:\GameDev\SDL2_ttf-2.0.12\lib\x86;C:\GameDev\SDL2_image-2.0.0\lib\x86;C:\GameDev\SDL2_mixer-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\GameDev\SDL2-2.0.3\include;C:\GameDev\SDL2_ttf-2.0.12\include;C:\GameDev\SDL2_image-2.0.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\GameDev\SDL2-2.0.3\lib\x86;C:\GameDev\SDL2_ttf-2.0.12\lib\x86;C:\GameDev\SDL2_image-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -105,7 +108,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

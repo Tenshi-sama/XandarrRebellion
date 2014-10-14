@@ -28,6 +28,8 @@ public:
 	// is required for all drawing operations.
 	SDL_Renderer* ptr_renderer_;
 
+	SDL_Event* ptr_event_;
+
 	// Value, in pixels, of the window's width.
 	int width_;
 
@@ -66,6 +68,10 @@ public:
 	inline SDL_Window* getWindow() const { return ptr_app_window_; }
 	inline bool isKeyboardFocused() const { return is_keyboard_focused_; }
 	inline SDL_Renderer* getRenderer() const { return ptr_renderer_; }
+	inline bool isFullscreen() const { return is_fullscreen_; }
+	inline SDL_Event* getEvent() const { return ptr_event_; }
+
+	void isFullscreen(bool newValue) { is_fullscreen_ = newValue; }
 };
 
 #endif

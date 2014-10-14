@@ -17,7 +17,6 @@ void TeamCredits::Clean() {
 
 // Handles the main menu's button's events
 void TeamCredits::HandleEvents(SDL_Event* event) {
-
 	switch (event->type) {
 		case SDL_MOUSEBUTTONDOWN:
 			if (event->button.button == SDL_BUTTON_LEFT || event->button.button == SDL_BUTTON_RIGHT) {

@@ -2,17 +2,17 @@
 #define SRC_GAMEPLAYSTATE_H
 
 #include "GameState.h"
-#include <SDL_mixer.h>
-#include <stdio.h>
-#include <string>
-//#include "GameStateManager.h"
+#include "GameStateManager.h"
 #include "Button.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "NPC.h"
 #include "HUD.h"
-#include "Katana.h"
-#include "Melee.h"
 #include "Level.h"
+#include "Item.h"
+#include "TextWindow.h"
+#include "HitBox.h"
+#include "Inventory.h"
 
 
 // Fourth and final GameState of the applicatoin
@@ -24,35 +24,30 @@ private:
 	//======================//
 	Player player_;
 	Enemy enemy_;
-	Katana katana_;
+	NPC npc_;
+	Item item_;
+	Item item2_;
+	TextWindow textWindow_;
 	Level level_;
+	HitBox hitbox_;
 	Healthbarout Healthbarout_;
 	Healthbarin Healthbarin_;
+	XP xp_;
+	PrintLevel printLevel_;
+	Inventory inventory_;
 	
-	//The music that will be played
-	Mix_Music *gMusic = NULL;
-	//The sound effects that will be used 
-	Mix_Chunk *gScratch = NULL;
-	Mix_Chunk *gHigh = NULL;
-	Mix_Chunk *gMedium = NULL;
-	Mix_Chunk *gLow = NULL;
+	Timer state_life_timer_;
+	unsigned int tmpTime;
 
-	// TODO:
-	// REPLACE THIS PROPETY WITH A TEXTURE OBJECT
-	//SDL_Texture * ptr_background_texture_;
+	WindowManager* w;
 
-	// Tracks if a player has met a victory condition.
-	bool is_winner_;
-	bool success_;
 	//======================//
 	//		Behaviours		//
 	//======================//
-	// Reintializes the object (New Game)
-	void Reset (WindowManager* w);
 
 public:
 
-	GameplayState() : is_winner_(false) {};
+	//GameplayState() : ptr_background_texture_(nullptr), is_winner_(false) {}
 
 	// Gameplay state initialization method
 	virtual void Init(WindowManager* w);
@@ -61,7 +56,8 @@ public:
 	virtual void Clean();
 
 	// Gameplay state event handler method
-	virtual void HandleEvents(SDL_Event* event);
+	virtual void HandleEvents(SDL_Event* event); 
+	virtual void HandleEvents(WindowManager* w){}
 
 	// Gameplay state logic update method
 	virtual void Update(WindowManager* w);
@@ -70,6 +66,9 @@ public:
 	virtual void Render(WindowManager* w);
 
 	bool collide(Player* a, Enemy* b);
+	bool collide(Player* a, NPC* b);
+	bool collide(Player* a, Item* b);
+	bool collide(Player* a, HitBox* b);
 };
  
 #endif

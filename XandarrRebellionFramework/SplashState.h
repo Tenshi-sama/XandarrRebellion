@@ -3,6 +3,7 @@
 
 #include "GameStateManager.h"
 #include "Button.h"
+#include "Texture.h"
 
 using namespace std;
 
@@ -14,12 +15,15 @@ class SplashState : public GameState {
 private:
 	// Pointer to splash screen texture
 	SDL_Texture* ptr_splash_screen_;
+	
+	const string SPRITE_LOCATION;
+	Texture sprite_;
 
 	//======================//
 	//		Behaviours		//
 	//======================//
 public:
-	SplashState() : ptr_splash_screen_(nullptr) {}
+	SplashState() : ptr_splash_screen_(nullptr), SPRITE_LOCATION("_resources/start.png") {}
 	~SplashState() {}
 
 	// Splash state initialization method

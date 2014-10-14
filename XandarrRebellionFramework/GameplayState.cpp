@@ -8,123 +8,202 @@ void GameplayState::Init(WindowManager* w)
 	SDL_Renderer* wRend = w->getRenderer(); 
 	cout << "|-->GameplayState::Init() Invoked" << endl;
 
-	SDL_Init(SDL_INIT_AUDIO);
-	if (SDL_Init(SDL_INIT_AUDIO) < 0) 
-	{ 
-		printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError()); 
-		success_ = false; 
-	}
-	//Initialize SDL_mixer 
-	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
-	if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 ) 
-	{ 
-		printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() ); 
-		success_ = false; 
-	}
-
-	//Load music 
-	gMusic = Mix_LoadMUS( "_sounds\\beat.wav" );
-	if( gMusic == NULL ) 
-	{ 
-		printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() ); 
-		success_ = false; 
-	} 
-
-	//Load sound effects 
-	gScratch = Mix_LoadWAV( "_sounds\\left_hook.wav" ); 
-	if( gScratch == NULL ) 
-	{ 
-		printf( "Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError() ); 
-		success_ = false; 
-	}
-
-	//gHigh = Mix_LoadWAV( "21_sound_effects_and_music/high.wav" ); 
-	//if( gHigh == NULL ) 
-	//{ 
-	//	printf( "Failed to load high sound effect! SDL_mixer Error: %s\n", Mix_GetError() ); 
-	//	success_ = false; 
-	//} 
-	//
-	//gMedium = Mix_LoadWAV( "21_sound_effects_and_music/medium.wav" ); 
-	//if( gMedium == NULL ) 
-	//{ 
-	//	printf( "Failed to load medium sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
-	//	success_ = false; 
-	//} 
-	//
-	//gLow = Mix_LoadWAV( "21_sound_effects_and_music/low.wav" ); 
-	//if( gLow == NULL ) 
-	//{ 
-	//	printf( "Failed to load low sound effect! SDL_mixer Error: %s\n", Mix_GetError() ); 
-	//	success_ = false; 
-	//} 
-
-	//ptr_background_texture_ = RenderingEngine::LoadTexture(wRend, "_resources\\map.png");
 	level_.Init(wRend);
+	inventory_.Init(wRend);
+	textWindow_.Init(wRend);
 	player_.Init(wRend);
 	enemy_.Init(wRend);
+	npc_.Init(wRend);
+	item_.Init(wRend);
+	item2_.Init(wRend);
 	Healthbarin_.Init(wRend);
 	Healthbarout_.Init(wRend);
-	katana_.Init(wRend);
-	
+	xp_.Init(wRend);
+	printLevel_.Init(wRend);
+
+	item_.name("Potion1");
+	item2_.name("Potion2");
+
+	inventory_.getTexture()->visible(false);
+	state_life_timer_.Start();
 }
 
 void GameplayState::Clean() 
 {
 	cout << "|-->GameplayState::Clean() Invoked" << endl;
 
-	//RenderingEngine::DestroyTexture(ptr_background_texture_);
-	is_winner_ = false;
-
-	//Free the sound effects 
-	Mix_FreeChunk( gScratch ); 
-	Mix_FreeChunk( gHigh ); 
-	Mix_FreeChunk( gMedium ); 
-	Mix_FreeChunk( gLow ); 
-	gScratch = NULL; 
-	gHigh = NULL; 
-	gMedium = NULL; 
-	gLow = NULL; 
-	//Free the music 
-	Mix_FreeMusic( gMusic ); 
-	gMusic = NULL; 
-	//Quit SDL subsystems 
-	Mix_Quit(); 
-	SDL_Quit();
 }
 
 // Handles all gameplay events
-void GameplayState::HandleEvents(SDL_Event* event)
+void GameplayState::HandleEvents(SDL_Event* event) 
 {
-
+	
 	player_.HandleEvents(event); //Player events
 	//enemy_.HandleEvents(event);
 
-	switch (event->type)
+	switch (event->type) 
 	{
-	//Play high sound effect
-	case SDL_KEYDOWN:
-		if (event->key.keysym.sym == SDLK_p)
-		{
-			Mix_PlayChannel(-1, gScratch, 0);
-			cout << "P pressed" << endl;
-		}	
+		case SDL_MOUSEBUTTONDOWN:
+			if (event->button.button == SDL_BUTTON_LEFT) 
+			{
+				cout << "|--> Mouse Click(" << event->button.x << ", " << event->button.y << ") | Current State: GameplayState" << endl;
+				
+			if (collide(&player_, &enemy_)) {
+				while (player_.getCurrentHealth() > 0 && enemy_.getHealth() > 0) {
+					enemy_.setHealth(enemy_.getHealth() - player_.getAtk());
+					cout << "Enemy Health = " << enemy_.getHealth() << endl;
+				}
+
+				if (enemy_.getHealth() == 0) {
+					enemy_.notVisible();
+					cout << "Enemy down!!!\n";
+					item2_.setXPos(enemy_.getXPos());
+					item2_.setYPos(enemy_.getYPos());
+					player_.addXp(enemy_.getXp());
+				}
+			}
+		}
+			break;
+			
+		case SDL_KEYDOWN:
+			/*if (event->key.keysym.sym == SDLK_f) {
+				cout << "|--> Toggle Fullscreen" << endl;
+				if (w->isFullscreen()) {
+					w->isFullscreen(false);
+				} else {
+					w->isFullscreen(true);
+				}
+			}*/
+			if (event->key.keysym.sym == SDLK_r) {
+				GameStateManager::setCurrentState(GAMESTATE_GAMEPLAY);
+			}
+
+			if (event->key.keysym.sym == SDLK_ESCAPE) {
+				SDL_Quit();
+			}
+
+			if (event->key.keysym.sym == SDLK_i) {
+				inventory_.printInventory();
+				inventory_.HandleEvents(event);
+			}
+			break;
 	}
 }
 
-
-// From turn five onwards, checks if there has been a winner.
-void GameplayState::Update(WindowManager* w)
+void GameplayState::Update(WindowManager* w) 
 {
 	player_.Update(w);
-	enemy_.Update(w);
-	katana_.Update(w);
+	Healthbarin_.Update(w, &player_);
+	xp_.Update(w);
+	printLevel_.Update(w);
+	inventory_.Update(w);
 
 	if (collide(&player_, &enemy_)) {
-		enemy_.Moving(false);
+		/*
+		switch (w->getEvent()->type) {
+			case SDL_MOUSEBUTTONDOWN:
+				if (w->getEvent()->button.button == SDL_BUTTON_LEFT) {
+					while (player_.getBaseHealth() > 0 && enemy_.getHealth() > 0){
+					enemy_.setHealth(enemy_.getHealth() - player_.getBaseAttack());
+					cout << "Enemy Health = " << enemy_.getHealth() << endl;
+				}
+		}
+		}
+		*/
+		//enemy_.Moving(false);
+		//enemy_.Attack();
+
+		if (player_.getCurrentHealth() <= 0) {
+			player_.notVisible();
+			SDL_Quit();
+		}
+
+		if (player_.getCurrentHealth() > 0 && enemy_.getHealth() > 0) {
+			if (((state_life_timer_.getTicks() % 1000) <= 20)) {
+				player_.setCurrentHealth(player_.getCurrentHealth() - enemy_.getAtk());
+				cout << "Player Health = " << player_.getCurrentHealth() << endl;
+			}
+		}
+	} else {
+		//enemy_.Moving(true);
 	}
-	else {
-		enemy_.Moving(true);
+	
+	if (collide(&player_, &npc_)) {
+		npc_.Moving(false);
+		npc_.Speech(w->getRenderer());
+	} else {
+		npc_.Moving(true);
+	}
+
+	if (collide(&player_, &item_)) {
+		inventory_.addItem(item_);
+		item_.notVisible();
+		item_.~Item();
+	}
+
+	if (collide(&player_, &item2_)) {
+		inventory_.addItem(item2_);
+		item2_.notVisible();
+		item2_.~Item();
+	}
+	
+	if (collide(&player_, &level_.getHitbox())) {
+		player_.Update(w);
+		Healthbarin_.Update(w, &player_);
+
+		//The sides of the rectangles
+		int leftA, leftB;
+		int rightA, rightB;
+		int topA, topB;
+		int bottomA, bottomB;
+
+		//Calculate the sides of rect A
+		leftA = player_.getXPos();
+		rightA = player_.getXPos() + player_.getWidth();
+		topA = player_.getYPos();
+		bottomA = player_.getYPos() + player_.getHeight();
+
+		//Calculate the sides of rect B
+		leftB = level_.getHitbox().getXPos();
+		rightB = level_.getHitbox().getXPos() + level_.getHitbox().getWidth();
+		topB = level_.getHitbox().getYPos();
+		bottomB = level_.getHitbox().getYPos() + level_.getHitbox().getHeight();
+		
+		// checks if the player has collided with the bottom of the hitbox
+		// and stops the player from moving up
+		if ((topA == bottomB || (topA < bottomB && topA >topB)) && (leftA < rightB && leftA > leftB)) {
+			cout << "collided with bottom of hitbox" << endl;
+			player_.setLockUp(true);
+		} else {
+			player_.setLockUp(false);
+		}
+
+		// checks if the player has collided with the top of the hitbox
+		// and stops the player from movind down
+		if ((bottomA == topB || (bottomA > topB && bottomA < bottomB)) && (leftA < rightB && leftA > leftB)) {
+			cout << "collided with top of hitbox" << endl;
+			player_.setLockDown(true);
+		} else {
+			player_.setLockDown(false);
+		}
+
+		// checks if the player has collided with the left of the hitbox
+		// and stops the player from moving right
+		if ((rightA == leftB || (rightA > leftB && rightA < rightB)) && (topA < bottomB && topA > topB)) {
+			cout << "collided with left of hitbox" << endl;
+			player_.setLockRight(true);
+		} else {
+			player_.setLockRight(false);
+		}
+
+		// checks if the player has collided with the left of the hitbox
+		// and stops the player from moving left
+		if ((leftA == rightB || (leftA < rightB && leftA > leftB)) && (topA < bottomB && topA > topB)) {
+			cout << "collided with right of hitbox" << endl;
+			player_.setLockLeft(true);
+		} else {
+			player_.setLockLeft(false);
+		}
 	}
 }
 
@@ -137,24 +216,20 @@ void GameplayState::Render(WindowManager* w)
 	// the background was being drawn on top of it. Be careful of your
 	// draw order!
 
-	// Draw the ptr_background_texture_image to the Scene2D object within RenderingEngine
-	//RenderingEngine::DrawTexture(w->getRenderer(), ptr_background_texture_, 0, 0);
-
 	// Player
 	level_.Render(w);
 	enemy_.Render(w);
-	Healthbarin_.Render(w);
-	
-	katana_.Render(w);
-	Healthbarout_.Render(w);
+	inventory_.Render(w);
+	npc_.Render(w);
+	item_.Render(w);
+	item2_.Render(w);
 	player_.Render(w);
+	textWindow_.Render(w);
+	Healthbarin_.Render(w);
+	Healthbarout_.Render(w);
+	xp_.Render(w);
+	printLevel_.Render(w);
 	
-}
-
-//
-void GameplayState::Reset(WindowManager* w) 
-{
-	cout << "|-->GameplayState::Reset() Invoked" << endl;
 }
 
 bool GameplayState::collide(Player* a, Enemy* b) {
@@ -195,5 +270,135 @@ bool GameplayState::collide(Player* a, Enemy* b) {
     {
         return false;
     }
+
+	return true;
+}
+
+bool GameplayState::collide(Player* a, NPC* b) {
+	//The sides of the rectangles
+    int leftA, leftB;
+    int rightA, rightB;
+    int topA, topB;
+    int bottomA, bottomB;
+
+    //Calculate the sides of rect A
+    leftA = a->getXPos();
+    rightA = a->getXPos() + a->getWidth();
+    topA = a->getYPos();
+    bottomA = a->getYPos() + a->getHeight();
+
+    //Calculate the sides of rect B
+    leftB = b->getXPos();
+    rightB = b->getXPos() + b->getWidth();
+    topB = b->getYPos();
+    bottomB = b->getYPos() + b->getHeight();//If any of the sides from A are outside of B
+
+    if( bottomA <= topB )
+    {
+        return false;
+    }
+
+    if( topA >= bottomB )
+    {
+        return false;
+    }
+
+    if( rightA <= leftB )
+    {
+        return false;
+    }
+
+    if( leftA >= rightB )
+    {
+        return false;
+    }
+
+	return true;
+}
+
+bool GameplayState::collide(Player* a, Item* b) {
+	//The sides of the rectangles
+    int leftA, leftB;
+    int rightA, rightB;
+    int topA, topB;
+    int bottomA, bottomB;
+
+    //Calculate the sides of rect A
+    leftA = a->getXPos();
+    rightA = a->getXPos() + a->getWidth();
+    topA = a->getYPos();
+    bottomA = a->getYPos() + a->getHeight();
+
+    //Calculate the sides of rect B
+    leftB = b->getXPos();
+    rightB = b->getXPos() + b->getWidth();
+    topB = b->getYPos();
+    bottomB = b->getYPos() + b->getHeight();//If any of the sides from A are outside of B
+
+    if( bottomA <= topB )
+    {
+        return false;
+    }
+
+    if( topA >= bottomB )
+    {
+        return false;
+    }
+
+    if( rightA <= leftB )
+    {
+        return false;
+    }
+
+    if( leftA >= rightB )
+    {
+        return false;
+    }
+	return true;
+}
+
+bool GameplayState::collide(Player* a, HitBox* b) {
+	//The sides of the rectangles
+    int leftA, leftB;
+    int rightA, rightB;
+    int topA, topB;
+    int bottomA, bottomB;
+
+    //Calculate the sides of rect A
+    leftA = a->getXPos();
+    rightA = a->getXPos() + a->getWidth();
+    topA = a->getYPos();
+    bottomA = a->getYPos() + a->getHeight();
+
+    //Calculate the sides of rect B
+    leftB = b->getXPos();
+    rightB = b->getXPos() + b->getWidth();
+    topB = b->getYPos();
+    bottomB = b->getYPos() + b->getHeight();//If any of the sides from A are outside of B
+	
+    if( bottomA <= topB )
+    {
+		a->setLockDown(false);
+        return false;
+    }
+
+    if( topA >= bottomB )
+    {
+		a->setLockUp(false);
+        return false;
+    }
+
+    if( rightA <= leftB )
+    {
+		a->setLockRight(false);
+        return false;
+    }
+
+    if( leftA >= rightB )
+    {
+		a->setLockLeft(false);
+        return false;
+    }
+
 	return true;
 }

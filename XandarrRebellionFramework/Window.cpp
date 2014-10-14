@@ -9,8 +9,8 @@ WindowManager::WindowManager() {
 	is_mouse_focused_ = false;
 	is_keyboard_focused_ = false;
 	is_fullscreen_ = false;
-	width_ = 600;
-	height_ = 800;
+	width_ = 800;
+	height_ = 544;
 }
 
 WindowManager::~WindowManager() {
@@ -98,6 +98,20 @@ void WindowManager::HandleEvents(SDL_Event* event) {
 			case SDL_WINDOWEVENT_FOCUS_LOST:
 				is_keyboard_focused_ = false;
 				break; 
+		}
+	}
+
+	if (event->type == SDL_KEYDOWN) {
+		if (event->key.keysym.sym == SDLK_f) {
+			cout << "isFullscreen is: " << isFullscreen() << endl;
+			if (isFullscreen()) {
+				isFullscreen(false);
+				cout << "isFullscreen is: " << isFullscreen() << endl;
+			} else {
+				isFullscreen(true);
+				cout << "isFullscreen is: " << isFullscreen() << endl;
+				SDL_WINDOW_FULLSCREEN;
+			}
 		}
 	}
 }

@@ -76,11 +76,11 @@ void GameEngine::DrawAvgFPS() {
 
 	TTF_Font* _pFont = TTF_OpenFont("_resources/TPBAFK-Regular.otf", 28);
 
-	fpsTex = RenderingEngine::CreateTextureFromString(rendering_engine_.getRenderer(), timeText.str(), textColor, _pFont);
+	//fpsTex = RenderingEngine::CreateTextureFromString(rendering_engine_.getRenderer(), timeText.str(), textColor, _pFont);
 
-	RenderingEngine::DrawTexture(rendering_engine_.getRenderer(), fpsTex, 10, 10);
+	//RenderingEngine::DrawTexture(rendering_engine_.getRenderer(), fpsTex, 10, 10);
 
-	SDL_DestroyTexture(fpsTex);
+	//SDL_DestroyTexture(fpsTex);
 
 	TTF_CloseFont(_pFont);
 	_pFont = nullptr;

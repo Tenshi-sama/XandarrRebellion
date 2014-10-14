@@ -22,6 +22,7 @@ void GameStateManager::Init(WindowManager* w) {
 }
 
 void GameStateManager::HandleEvents(SDL_Event* event) {
+
 	if (ptr_current_state_ && !is_state_change_) {
 		ptr_current_state_->HandleEvents(event);
 	}

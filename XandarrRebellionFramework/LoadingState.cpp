@@ -61,7 +61,6 @@ void LoadingState::Update(WindowManager* w) {
 		if ((state_life_timer_.getTicks() / 1000.f) >= 3) {
 			GameStateManager::setCurrentState(GAMESTATE_MAINMENU);
 		}*/
-		
 	}
 }
 

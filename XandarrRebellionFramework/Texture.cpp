@@ -35,6 +35,7 @@ Texture::Texture(SDL_Renderer* r, const string& imgLocation) {
 	// Load Texture object's image data into texture_property
 	if (!LoadTexture(r, imgLocation)) {
 		// Failure
+		cout << "FAAAAAAAAAAAAAAAAAAAAIL!!\n";
 	}
 }
 

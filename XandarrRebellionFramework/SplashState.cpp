@@ -3,8 +3,10 @@
 // Load the splash screen's image resource
 void SplashState::Init(WindowManager* w) {
 	cout << "|-->SplashState::Init() Invoked" << endl;
-
-	//ptr_splash_screen_ = RenderingEngine::LoadTexture(w->getRenderer(), "_resources\\TitlePage.png");
+	sprite_.LoadTexture(w->getRenderer(), SPRITE_LOCATION);
+	sprite_.x(0);
+	sprite_.y(0);
+	ptr_splash_screen_ = RenderingEngine::LoadTexture(w->getRenderer(), "_resources\\splashScreen.png");
 }
 
 // Cleans the object in preparation for safe destruction of the object.
@@ -34,20 +36,15 @@ void SplashState::HandleEvents(SDL_Event* event) {
 
 // All GameState's require an Update(WindowManager* w) method but given the simplicity of the
 // splash state, no logic needs updated so the code body is kept empty.
-void SplashState::Update(WindowManager* w) 
-{
-
-}
+void SplashState::Update(WindowManager* w) {}
 
 // All Draw operations for the splash state are performed here. Everything
 // drawn within this method is drawn to the RenderingEngine's scene_property.
-void SplashState::Render(WindowManager* w) 
-{
-	ptr_splash_screen_ = RenderingEngine::LoadTexture(w->getRenderer(), "_resources\\TitlePage.png");
+void SplashState::Render(WindowManager* w) {
 	// Background Fill
 
 	// Set the Renderer Colour to desired value for drawing the background.
-	//SDL_SetRenderDrawColor(w->getRenderer(), 80, 20, 162, 255);
+	SDL_SetRenderDrawColor(w->getRenderer(), 80, 20, 162, 255);
 
 	// Define the x and y as well as width and height properties of the
 	// background image.
@@ -60,5 +57,6 @@ void SplashState::Render(WindowManager* w)
 	// Draw title screen
 
 	// Draw the ptr_splash_screen_image to the Scene2D object within RenderingEngine
+	sprite_.Draw(w->getRenderer());
 	RenderingEngine::DrawTexture(w->getRenderer(), ptr_splash_screen_, 0, 0);
 }
